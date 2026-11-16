@@ -50,7 +50,9 @@ pub fn plan_route(bounds: Bounds, mode: MiningMode) -> Vec<RouteStep> {
     let b = bounds.normalized();
     let (vertical, horizontal) = mode.footprint();
     let mut out = Vec::new();
-    for y in b.start.y..=b.end.y {
+    // Each route layer is a footprint-height band, so 3-high modes do not overlap.
+    let mut y = b.start.y;
+    while y <= b.end.y {
         let mut z = b.start.z;
         while z <= b.end.z {
             let mut x = b.start.x;
@@ -68,6 +70,7 @@ pub fn plan_route(bounds: Bounds, mode: MiningMode) -> Vec<RouteStep> {
             }
             z += 1;
         }
+        y += vertical;
     }
     out
 }
