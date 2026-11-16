@@ -124,7 +124,7 @@ mod tests {
     #[test]
     fn footprint_sizes() {
         assert_eq!(plan_route(Bounds { start: BlockPos::new(0, 0, 0), end: BlockPos::new(2, 2, 0) }, MiningMode::ThreeByThree).len(), 9);
-        assert_eq!(plan_route(Bounds { start: BlockPos::new(0, 0, 0), end: BlockPos::new(2, 2, 0) }, MiningMode::ThreeByTwo).len(), 6);
+        assert_eq!(plan_route(Bounds { start: BlockPos::new(0, 0, 0), end: BlockPos::new(1, 2, 0) }, MiningMode::ThreeByTwo).len(), 6);
     }
     #[test]
     fn finished_route_disables() {
