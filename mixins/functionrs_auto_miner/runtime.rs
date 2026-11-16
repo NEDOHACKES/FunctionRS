@@ -19,10 +19,19 @@ impl State {
   let min=Pos{x:a.x.min(b.x),y:a.y.min(b.y),z:a.z.min(b.z)};
   let max=Pos{x:a.x.max(b.x),y:a.y.max(b.y),z:a.z.max(b.z)};
   let (vy,hx)=self.mode.footprint();
-  for y in min.y..=max.y { let mut z=min.z; while z<=max.z { let mut x=min.x; while x<=max.x {
-    for dy in 0..vy { for dx in 0..hx { let px=x+dx; let py=y+dy; if px<=max.x && py<=max.y { self.route.push(Pos{x:px,y:py,z}); } } }
-    x+=hx;
-  } z+=1; } }
+  let mut y=min.y;
+  while y<=max.y {
+   let mut z=min.z;
+   while z<=max.z {
+    let mut x=min.x;
+    while x<=max.x {
+     for dy in 0..vy { for dx in 0..hx { let px=x+dx; let py=y+dy; if px<=max.x && py<=max.y { self.route.push(Pos{x:px,y:py,z}); } } }
+     x+=hx;
+    }
+    z+=1;
+   }
+   y+=vy;
+  }
  }
 }
 impl crate::game::Game<'_> {
