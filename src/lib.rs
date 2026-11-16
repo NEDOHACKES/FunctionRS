@@ -1,3 +1,4 @@
+// Route planner updated for non-overlapping vertical footprint layers.
 // FunctionRS Auto Miner route planner.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum MiningMode { OneByOne, ThreeByOne, ThreeByTwo, ThreeByThree }
